@@ -19,7 +19,9 @@ interface HomeProps {
   }[]
 }
 
+// A função principal que renderiza a página Home
 export default function Home({ products }: HomeProps) {
+  // Configuração e uso do slider do Keen Slider
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -27,13 +29,14 @@ export default function Home({ products }: HomeProps) {
     }
   });
 
+  // Renderização dos produtos utilizando o Link do Next.js e o componente de estilização Product
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map(product => {
         return (
-          <Link href={`/product/${product.id}`} key={product.id}>
+          <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
             <Product className="keen-slider__slide" >
-              <Image src={product.imageUrl} alt="camiseta" width={520} height={480} />
+              <Image src={product.imageUrl} width={520} height={480} alt="" />
               <footer>
                 <strong>{product.name}</strong>
                 <span>{product.price}</span>
@@ -47,6 +50,7 @@ export default function Home({ products }: HomeProps) {
   )
 }
 
+// Função assíncrona que busca os produtos do Stripe e retorna como props para a Home
 export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price']
@@ -55,6 +59,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const products = response.data.map(product => {
     const price = product.default_price as Stripe.Price;
 
+    // Formatação do preço utilizando o Intl.NumberFormat e o Real Brasileiro (BRL)
     return {
       id: product.id,
       name: product.name,
@@ -66,10 +71,11 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
+  // Retorno dos produtos e o tempo de revalidação em segundos
   return {
     props: {
       products,
-      revalidate: 60 * 60 * 2, // 2 hours,
+      revalidate: 60 * 60 * 2, // 2 horas,
     },
   }
 }

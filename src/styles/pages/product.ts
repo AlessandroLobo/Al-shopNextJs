@@ -23,14 +23,15 @@ export const ImageContainer = styled('div', {
   justifyContent: 'center',
 
   img: {
-    objectFit: 'cover',
+    objectFit: 'contain',
   }
 })
 
 export const ProductDetails = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-
+  justifyContent: 'space-between',
+  height: '100%',
   h1: {
     fontSize: '$2xl',
     color: '$gray300',
@@ -51,6 +52,8 @@ export const ProductDetails = styled('div', {
   },
 
   button: {
+    height: '5rem',
+
     marginTop: 'auto',
     backgroundColor: '$green500',
     border: 0,
@@ -70,4 +73,33 @@ export const ProductDetails = styled('div', {
       backgroundColor: '$green300',
     }
   },
+
+  a: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textDecoration: 'none',
+    height: '5rem',
+    marginTop: 'auto',
+    backgroundColor: '$green500',
+    border: 0,
+    color: '$white',
+    borderRadius: 8,
+    padding: '1.25rem',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '$md',
+    textAlign: 'center',
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed',
+    },
+
+    '&:not(:disabled):hover': {
+      backgroundColor: '$green300',
+    }
+  },
+
 })
+
