@@ -1,9 +1,10 @@
 import { stripe } from '@/lib/stripe' // Importações no início do arquivo
 import { ImageContainer, ProductContainer, ProductDetails } from '@/styles/pages/product'
+import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Stripe from 'stripe'
 
 interface ProductProps {
@@ -13,11 +14,38 @@ interface ProductProps {
     imageUrl: string,
     price: string,
     description: string,
+    defalutPriceId: string,
+
   }
 }
 
 export default function Product({ product }: ProductProps) {
-  const { query } = useRouter() // Obtenção de rota
+  //se fosse uma rota interna usaria 
+  // const router = useRouter()
+  const [isCreatingchecoutSession, setIsCreatingchecoutSession] = useState(false)
+
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingchecoutSession(true)
+
+      const response = await axios.post('/api/checkout', {
+        priceId: product?.defalutPriceId,
+      })
+
+      const { checkoutUrl } = response.data;
+      console.log(checkoutUrl)
+
+      //se fosse uma rota interna usaria 
+      // router.push(checkoutUrl)
+
+      window.location.href = checkoutUrl;
+    } catch (err) {
+
+      setIsCreatingchecoutSession(false)
+
+      alert('Falha ao redirecionar ao checkout')
+    }
+  }
 
   return (
     <ProductContainer>
@@ -30,7 +58,7 @@ export default function Product({ product }: ProductProps) {
         <h1>{product.name}</h1>
         <span>{product.price}</span>
         <p>{product.description}</p>
-        <button>
+        <button disabled={isCreatingchecoutSession} onClick={handleBuyProduct}>
           Comprar agora
         </button>
         <Link href="/" prefetch={false}>
@@ -77,7 +105,9 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
           style: 'currency',
           currency: 'BRL'
         }).format(price?.unit_amount ? price.unit_amount / 100 : 0), // Formatação de preço
-        description: product.description || ''
+        description: product.description || '',
+        defalutPriceId: price?.id || '',
+
       }
     },
     revalidate: 60 * 60 * 1 // 1 hora de revalidação
