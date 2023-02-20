@@ -46,7 +46,7 @@ npm install
 ```
 ## Link do projeto no vercel
 
-<h1><a href="https://al-shop-next-js.vercel.app/" target="_blank" >Clique aqui</a></h1>
+<h1><a href="https://al-shop-next-js.vercel.app/" target="blank" >Clique aqui</a></h1>
 
 ## A baixo alguma imagens das telas criadas.
 
