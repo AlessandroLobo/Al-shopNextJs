@@ -25,9 +25,12 @@ interface HomeProps {
 export default function Home({ products }: HomeProps) {
   // Configuração e uso do slider do Keen Slider
   const [sliderRef] = useKeenSlider({
+    
     slides: {
-      perView: 3,
-      spacing: 48
+      perView: "auto",
+      spacing: 48,
+      
+
     }
   });
 
