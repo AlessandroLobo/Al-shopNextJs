@@ -23,7 +23,7 @@ interface HomeProps {
   }[]
 }
 
-const animation = { duration: 5000, easing: (t: number) => t }
+const animation = { duration: 20000, easing: (t: number) => t }
 
 // A função principal que renderiza a página Home
 export default function Home({ products }: HomeProps) {

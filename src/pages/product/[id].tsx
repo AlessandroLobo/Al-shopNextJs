@@ -20,6 +20,7 @@ interface ProductProps {
   }
 }
 
+
 export default function Product({ product }: ProductProps) {
   //se fosse uma rota interna usaria 
   // const router = useRouter()
@@ -71,7 +72,6 @@ export default function Product({ product }: ProductProps) {
             Voltar
           </Link>
         </ProductDetails>
-
       </ProductContainer>
     </>
   )
