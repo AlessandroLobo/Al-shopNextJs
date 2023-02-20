@@ -6,7 +6,7 @@ Este guia tem como objetivo fornecer uma documentação para o GitHub sobre o pr
 ## Recursos Utilizados
 - Next.js: Framework para construção de aplicações web em React, que permite a renderização do lado do servidor e melhora a performance e a indexação dos motores de busca.
 
-- React: Biblioteca JavaScript para a criação de interfaces de usuário.
+- React: Biblioteca JavaScript e typeScript para a criação de interfaces de usuário.
 
 - Stripe API: Plataforma de pagamentos online que possibilita a realização de transações seguras.
 
