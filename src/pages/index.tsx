@@ -7,6 +7,8 @@ import { HomeContainer, Product } from "@/styles/pages/home"
 
 import { useKeenSlider } from 'keen-slider/react'
 
+import "keen-slider/keen-slider.min.css"
+
 import 'keen-slider/keen-slider.min.css'
 import { stripe } from "@/lib/stripe"
 import { GetStaticProps } from "next"
@@ -21,17 +23,28 @@ interface HomeProps {
   }[]
 }
 
+const animation = { duration: 5000, easing: (t: number) => t }
+
 // A função principal que renderiza a página Home
 export default function Home({ products }: HomeProps) {
   // Configuração e uso do slider do Keen Slider
   const [sliderRef] = useKeenSlider({
-    
     slides: {
       perView: "auto",
       spacing: 48,
-      
-
-    }
+    },
+    loop: true,
+    renderMode: "performance",
+    drag: true,
+    created(s) {
+      s.moveToIdx(0.5, true, animation)
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 0.5, true, animation)
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 0.5, true, animation)
+    },
   });
 
   // Renderização dos produtos utilizando o Link do Next.js e o componente de estilização Product
