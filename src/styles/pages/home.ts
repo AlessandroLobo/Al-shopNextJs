@@ -6,6 +6,10 @@ export const HomeContainer = styled('main', {
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
   minHeight: 656,
+  '@media (max-width: 768px)': {
+    minHeight: 400,
+  }
+
 })
 
 export const Product = styled('div', {
@@ -19,8 +23,24 @@ export const Product = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
+  '@media (max-width: 768px)': {
+    maxHeight: 230,
+    maxWidth: 300,
+    gridTemplateColumns: '1fr',
+    gap: '2rem',
+    padding: '0 2rem'
+  },
+
   img: {
-    objectFit: 'contain'
+    objectFit: 'contain',
+
+    '@media (max-width: 768px)': {
+      maxHeight: 300,
+      maxWidth: 300,
+      gridTemplateColumns: '1fr',
+      gap: '2rem',
+      padding: '0 2rem'
+    },
   },
 
   footer: {
