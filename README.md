@@ -16,15 +16,7 @@ Este guia tem como objetivo fornecer uma documentação para o GitHub sobre o pr
 
 - Axios: Biblioteca para a realização de requisições HTTP.
 
-## Ferramentas usadas:
 
-- Node
-- Next.js
-- React
-- Stripe API
-- Stitches
-- Keen-Slider
-- Axios
 
 ```bash
 # Clone this project
