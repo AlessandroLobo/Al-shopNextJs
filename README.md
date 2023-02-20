@@ -44,7 +44,7 @@ npm install
 ```bash
   yarn 
 ```
-## Link do projeto no vercel -----------------------------------------
+## Link do projeto no vercel
 
 <h1><a href="https://al-shop-next-js.vercel.app/" >Clique aqui</a></h1>
 
